@@ -6,5 +6,17 @@ package com.minis;
 public interface BeanFactory {
     Object getBean(String beanName) throws BeansException;
 
-    void registerBeanDefinition(BeanDefinition beanDefinition);
+    void registerBean(BeanDefinition beanDefinition);
+
+    boolean containBean(String beanName);
+
+    void registryBean(String beanName, Object obj);
+
+    boolean isSingleton(String name);
+
+    boolean isPrototype(String name);
+
+    Class<?> getType(String name);
+
+
 }

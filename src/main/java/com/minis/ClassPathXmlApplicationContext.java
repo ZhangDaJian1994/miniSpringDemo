@@ -1,17 +1,8 @@
 package com.minis;
 
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
+import com.apple.eawt.ApplicationEvent;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-public class ClassPathXmlApplicationContext {
+public class ClassPathXmlApplicationContext implements BeanFactory, ApplicationEventPublisher{
     BeanFactory beanFactory;
 
     public ClassPathXmlApplicationContext(String fileName) {
@@ -26,7 +17,40 @@ public class ClassPathXmlApplicationContext {
         return this.beanFactory.getBean(beanName);
     }
 
+    @Override
+    public void registerBean(BeanDefinition beanDefinition) {
+
+    }
+
     public void registerBeanDefinition(BeanDefinition beanDefinition) {
-        this.beanFactory.registerBeanDefinition(beanDefinition);
+        this.beanFactory.registerBean(beanDefinition);
+    }
+
+    public boolean containBean(String beanName) {
+        return this.beanFactory.containBean(beanName);
+    }
+
+    public void registryBean(String beanName, Object obj) {
+        this.beanFactory.registryBean(beanName, obj);
+    }
+
+    @Override
+    public boolean isSingleton(String name) {
+        return false;
+    }
+
+    @Override
+    public boolean isPrototype(String name) {
+        return false;
+    }
+
+    @Override
+    public Class<?> getType(String name) {
+        return null;
+    }
+
+    @Override
+    public void publishEvent(ApplicationEvent applicationEvent) {
+
     }
 }

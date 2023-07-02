@@ -3,9 +3,9 @@ package com.minis;
 import org.dom4j.Element;
 
 public class XmlBeanDefinitionReader {
-    BeanFactory beanFactory;
+    SimpleBeanFactory beanFactory;
 
-    public XmlBeanDefinitionReader(BeanFactory beanFactory) {
+    public XmlBeanDefinitionReader(SimpleBeanFactory beanFactory) {
         this.beanFactory = beanFactory;
     }
 
@@ -15,7 +15,7 @@ public class XmlBeanDefinitionReader {
             String beanId = element.attributeValue("id");
             String beanClass = element.attributeValue("class");
             BeanDefinition beanDefinition = new BeanDefinition(beanId, beanClass);
-            this.beanFactory.registerBeanDefinition(beanDefinition);
+            this.beanFactory.registerBean(beanDefinition);
         }
     }
 }
